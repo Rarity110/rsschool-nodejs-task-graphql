@@ -1,3 +1,4 @@
+import userProfilePostMemberByIdQuery from "./userProfilePostMemberById";
 import usersProfilesPostsMembersQuery from "./usersProfilesPostsMembers";
 
-export { usersProfilesPostsMembersQuery };
+export { userProfilePostMemberByIdQuery, usersProfilesPostsMembersQuery };
