@@ -1,21 +1,24 @@
 import { FastifyInstance } from "fastify";
-import { GraphQLList, GraphQLObjectType } from "graphql";
+import { GraphQLObjectType, GraphQLString } from "graphql";
 import { userType } from "../types";
 
-const usersWithPostsProfileMemberTypeType = new GraphQLObjectType({
-    name: 'usersWithPostsProfileMemberType',
+const userWithPostsProfileMemberTypeType = new GraphQLObjectType({
+    name: 'userWithPostsProfileMemberType',
     fields: () => ({
-        users: { type: new GraphQLList(userType) },
-      })
+      user: { type: userType },
+    })
   });
   
   
-  const usersWithPostsProfileMemberTypeQuery = {
-    type: usersWithPostsProfileMemberTypeType,
+  const userWithPostsProfileMemberTypeQuery = {
+    type: userWithPostsProfileMemberTypeType,
+    args: {
+        id: { type: GraphQLString }
+      },
     resolve: async (_: any, args: any, fastify: FastifyInstance) => {
-        const users =  await fastify.db.users.findMany();
-        return { users: users};
+      const user = await fastify.db.users.findOne({key: 'id', equals: args.id});
+      return {user: user}
     }
   };
 
-  export default usersWithPostsProfileMemberTypeQuery;
+  export default userWithPostsProfileMemberTypeQuery;
