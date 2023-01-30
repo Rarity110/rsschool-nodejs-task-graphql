@@ -17,7 +17,7 @@ const createUserMutation =  {
       input: {type: createUserInputType },
     },
     resolve: async (_: any, args: any, fastify: FastifyInstance) => {
-      return await fastify.db.users.create(args.user);
+      return await fastify.db.users.create(args.input);
     }
 };
 
