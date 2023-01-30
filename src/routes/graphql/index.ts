@@ -7,7 +7,7 @@ import {
 } from 'graphql';
 import { memberTypeQuery, memberTypesQuery, postQuery, postsQuery, profileQuery, profilesQuery, userQuery, usersQuery } from './queries/queries';
 import { createUserMutation } from './mutations';
-import { userProfilePostMemberByIdQuery, usersProfilesPostsMembersQuery, usersWithPostsProfileMemberTypeQuery, usersWithProfileUserSubscribedToQuery, userWithPostsProfileMemberTypeQuery } from './queries';
+import { userProfilePostMemberByIdQuery, usersProfilesPostsMembersQuery, usersWithPostsProfileMemberTypeQuery, usersWithProfileUserSubscribedToQuery, userWithPostsProfileMemberTypeQuery, userWithPostsSubscribedToUserByIdQuery } from './queries';
 
 
 const queries = new GraphQLObjectType({
@@ -30,6 +30,7 @@ const queries = new GraphQLObjectType({
     usersWithPostsProfileMemberType: usersWithPostsProfileMemberTypeQuery,
     userWithPostsProfileMemberType: userWithPostsProfileMemberTypeQuery,
     usersWithProfileUserSubscribedTo: usersWithProfileUserSubscribedToQuery,
+    userWithPostsSubscribedToUserById: userWithPostsSubscribedToUserByIdQuery
   }
 });
 
@@ -38,11 +39,19 @@ const mutations = new GraphQLObjectType({
   fields: {
     createUser: createUserMutation,
   }
-})
+});
+
+// const us = `
+// type us {
+//   id: ID!
+//   firstName: String!
+//   lastName: String!
+//   email: String!
+// }`;
 
 
-
-const schema = new GraphQLSchema ({
+const schema = new GraphQLSchema ({\
+  
   query: queries,
   mutation: mutations,
 });

@@ -7,7 +7,7 @@ const userType: any = new GraphQLObjectType({
     id: { 
       type: GraphQLID,
       description: 'The id of the user.',
-    },
+    }!,
     firstName: { 
       type: GraphQLString,
       description: 'The name of the user.',

@@ -3,6 +3,7 @@ import { FastifyInstance } from "fastify";
 import { userType } from "./types";
 
 const createUserMutation = {
+  
     type: userType,
     args: {
         firstName: { type: GraphQLString },
