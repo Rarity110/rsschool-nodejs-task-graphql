@@ -7,7 +7,7 @@ import {
 } from 'graphql';
 import { memberTypeQuery, memberTypesQuery, postQuery, postsQuery, profileQuery, profilesQuery, userQuery, usersQuery } from './queries/queries';
 import { userProfilePostMemberByIdQuery, usersProfilesPostsMembersQuery, usersWithPostsProfileMemberTypeQuery, usersWithProfileUserSubscribedToQuery, userWithPostsProfileMemberTypeQuery, userWithPostsSubscribedToUserByIdQuery } from './queries';
-import { createPostMutation, createProfileMutation, createUserMutation, updateProfileMutation, updateUserMutation } from './mutations';
+import { createPostMutation, createProfileMutation, createUserMutation, updatePostMutation, updateProfileMutation, updateUserMutation } from './mutations';
 
 
 const queries = new GraphQLObjectType({
@@ -42,6 +42,7 @@ const mutations = new GraphQLObjectType({
     createPost: createPostMutation,
     updateUser: updateUserMutation,
     updateProfile: updateProfileMutation,
+    updatePost: updatePostMutation,
   }
 });
 
