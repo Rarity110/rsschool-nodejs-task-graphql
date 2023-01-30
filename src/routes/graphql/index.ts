@@ -7,7 +7,7 @@ import {
 } from 'graphql';
 import { memberTypeQuery, memberTypesQuery, postQuery, postsQuery, profileQuery, profilesQuery, userQuery, usersQuery } from './queries/queries';
 import { userProfilePostMemberByIdQuery, usersProfilesPostsMembersQuery, usersWithPostsProfileMemberTypeQuery, usersWithProfileUserSubscribedToQuery, userWithPostsProfileMemberTypeQuery, userWithPostsSubscribedToUserByIdQuery } from './queries';
-import { createPostMutation, createProfileMutation, createUserMutation, updateMemberTypeMutation, updatePostMutation, updateProfileMutation, updateUserMutation } from './mutations';
+import { createPostMutation, createProfileMutation, createUserMutation, subscribeToMutation, unsubscribeFromMutation, updateMemberTypeMutation, updatePostMutation, updateProfileMutation, updateUserMutation } from './mutations';
 
 
 const queries = new GraphQLObjectType({
@@ -30,7 +30,8 @@ const queries = new GraphQLObjectType({
     usersWithPostsProfileMemberType: usersWithPostsProfileMemberTypeQuery,
     userWithPostsProfileMemberType: userWithPostsProfileMemberTypeQuery,
     usersWithProfileUserSubscribedTo: usersWithProfileUserSubscribedToQuery,
-    userWithPostsSubscribedToUserById: userWithPostsSubscribedToUserByIdQuery
+    userWithPostsSubscribedToUserById: userWithPostsSubscribedToUserByIdQuery,
+    unsubscribeFrom: unsubscribeFromMutation
   }
 });
 
@@ -44,6 +45,8 @@ const mutations = new GraphQLObjectType({
     updateProfile: updateProfileMutation,
     updatePost: updatePostMutation,
     updateMemberType: updateMemberTypeMutation,
+    subscribeTo: subscribeToMutation,
+    unsubscribeFrom: unsubscribeFromMutation
   }
 });
 
