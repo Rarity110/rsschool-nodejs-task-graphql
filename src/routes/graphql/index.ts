@@ -6,8 +6,8 @@ import {
   GraphQLObjectType,
 } from 'graphql';
 import { memberTypeQuery, memberTypesQuery, postQuery, postsQuery, profileQuery, profilesQuery, userQuery, usersQuery } from './queries/queries';
-import { createUserMutation } from './mutations';
 import { userProfilePostMemberByIdQuery, usersProfilesPostsMembersQuery, usersWithPostsProfileMemberTypeQuery, usersWithProfileUserSubscribedToQuery, userWithPostsProfileMemberTypeQuery, userWithPostsSubscribedToUserByIdQuery } from './queries';
+import { createUserMutation } from './mutations';
 
 
 const queries = new GraphQLObjectType({
@@ -41,16 +41,7 @@ const mutations = new GraphQLObjectType({
   }
 });
 
-// const us = `
-// type us {
-//   id: ID!
-//   firstName: String!
-//   lastName: String!
-//   email: String!
-// }`;
-
-
-const schema = new GraphQLSchema ({\
+const schema = new GraphQLSchema ({
   
   query: queries,
   mutation: mutations,
