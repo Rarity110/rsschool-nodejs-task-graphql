@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
+import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 import { memberTypeType, postType, profileType, userType } from "../types";
 
 const userProfilePostMemberByIdType = new GraphQLObjectType({
@@ -11,18 +11,29 @@ const userProfilePostMemberByIdType = new GraphQLObjectType({
       memberTypes: { type: new GraphQLList(memberTypeType) }
     })
   });
+
+  const idInputType = new GraphQLInputObjectType({
+    name: 'idInput',
+    fields: () => ({
+      id: { type: new GraphQLNonNull(GraphQLString) },
+    }),
+  });
   
   
   const userProfilePostMemberByIdQuery = {
     type: userProfilePostMemberByIdType,
     args: {
-        id: { type: GraphQLString }
+        input: { type: idInputType }
       },
     resolve: async (_: any, args: any, fastify: FastifyInstance) => {
-      const user = await fastify.db.users.findOne({key: 'id', equals: args.id});
-      const profile = (await fastify.db.profiles.findMany()).filter(profile => profile.id === args.id);;
-      const post = (await fastify.db.posts.findMany()).filter(post => post.id === args.id);;
-      const memberTypes = (await fastify.db.memberTypes.findMany()).filter(memberType => memberType.id === args.id);
+      const id = args.input.id;
+      const user = await fastify.db.users.findOne({key: 'id', equals: id});
+      if (!user) {
+        throw fastify.httpErrors.notFound();
+      }
+      const profile = (await fastify.db.profiles.findMany()).filter(profile => profile.id === id);;
+      const post = (await fastify.db.posts.findMany()).filter(post => post.id === id);;
+      const memberTypes = (await fastify.db.memberTypes.findMany()).filter(memberType => memberType.id === id);
       return {user: user, profile: profile, posts: post, memberTypes: memberTypes}
     }
   };
