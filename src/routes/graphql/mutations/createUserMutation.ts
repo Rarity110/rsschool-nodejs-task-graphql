@@ -11,10 +11,10 @@ const createUserInputType = new GraphQLInputObjectType({
   }),
 });
 
-const createUserMutation = {
+const createUserMutation =  {
     type: userType,
     args: {
-      user: {type: createUserInputType },
+      input: {type: createUserInputType },
     },
     resolve: async (_: any, args: any, fastify: FastifyInstance) => {
       return await fastify.db.users.create(args.user);

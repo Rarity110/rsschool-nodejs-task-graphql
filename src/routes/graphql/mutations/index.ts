@@ -1,3 +1,4 @@
+import createProfileMutation from "./createProfileMutation";
 import { createUserMutation } from "./createUserMutation";
 
-export { createUserMutation };
+export { createProfileMutation, createUserMutation };
