@@ -7,7 +7,7 @@ const updatePostInputType = new GraphQLInputObjectType({
   fields: () => ({
     title: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: new GraphQLNonNull(GraphQLString) },
-    userId: { type: new GraphQLNonNull(GraphQLString) },
+    postId: { type: new GraphQLNonNull(GraphQLString) },
   }),
 });
 
@@ -18,7 +18,7 @@ const updatePostMutation = {
     },
     resolve: async (_: any, args: any, fastify: FastifyInstance) => {
         const postData = args.input;
-        const id = postData.userId;
+        const id = postData.postId;
         const user = await fastify.db.posts.findOne({ key: 'id', equals: id });
         if (!user) {
             throw fastify.httpErrors.badRequest();

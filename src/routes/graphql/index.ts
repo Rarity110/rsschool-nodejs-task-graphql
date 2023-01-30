@@ -5,7 +5,6 @@ import {
   GraphQLSchema,
   GraphQLObjectType,
 } from 'graphql';
-import { memberTypeQuery, memberTypesQuery, postQuery, postsQuery, profileQuery, profilesQuery, userQuery, usersQuery } from './queries/queries';
 import { userProfilePostMemberByIdQuery, usersProfilesPostsMembersQuery, usersWithPostsProfileMemberTypeQuery, usersWithProfileUserSubscribedToQuery, userWithPostsProfileMemberTypeQuery, userWithPostsSubscribedToUserByIdQuery } from './queries';
 import { createPostMutation, createProfileMutation, createUserMutation, subscribeToMutation, unsubscribeFromMutation, updateMemberTypeMutation, updatePostMutation, updateProfileMutation, updateUserMutation } from './mutations';
 
@@ -13,18 +12,6 @@ import { createPostMutation, createProfileMutation, createUserMutation, subscrib
 const queries = new GraphQLObjectType({
   name: 'Query',
   fields: {
-    user: userQuery,
-    users: usersQuery,
-
-    profile: profileQuery,
-    profiles: profilesQuery,
-
-    post: postQuery,
-    posts: postsQuery,
-
-    memberType: memberTypeQuery,
-    memberTypes: memberTypesQuery,
-
     usersProfilesPostsMembers: usersProfilesPostsMembersQuery,
     userProfilePostMemberById: userProfilePostMemberByIdQuery,
     usersWithPostsProfileMemberType: usersWithPostsProfileMemberTypeQuery,
